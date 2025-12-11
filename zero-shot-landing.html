@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zero Shot AI - AI at Light Speed</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&family=JetBrains+Mono:wght@300;500&display=swap');
+        
+        :root {
+            --primary-black: #0a0a0a;
+            --ink: #1a1a1a;
+            --accent-red: #ff3333;
+            --soft-white: #fafafa;
+            --gray-100: #f0f0f0;
+            --gray-400: #888;
+            --transition-smooth: cubic-bezier(0.4, 0.0, 0.2, 1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--soft-white);
+            color: var(--primary-black);
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        /* Geometric background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: 
+                repeating-linear-gradient(
+                    45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(0,0,0,0.02) 100px,
+                    rgba(0,0,0,0.02) 101px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent,
+                    transparent 100px,
+                    rgba(0,0,0,0.02) 100px,
+                    rgba(0,0,0,0.02) 101px
+                );
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            animation: slideDown 0.6s ease-out;
+        }
+        
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+            color: var(--primary-black);
+        }
+        
+        .logo-img {
+            height: 45px;
+            width: auto;
+            display: block;
+            object-fit: contain;
+            filter: none;
+            animation: logoFade 1s ease-out;
+        }
+        
+        .logo-text {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-black);
+            font-size: 13px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-red);
+            transition: width 0.3s var(--transition-smooth);
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 0 80px;
+            position: relative;
+        }
+        
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .hero-text {
+            animation: fadeInLeft 0.8s ease-out;
+        }
+        
+        .hero-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: clamp(48px, 6vw, 80px);
+            font-weight: 600;
+            line-height: 0.95;
+            letter-spacing: -2px;
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .hero-title .accent {
+            color: var(--accent-red);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .hero-title .accent::after {
+            content: '→';
+            position: absolute;
+            right: -45px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 0.6em;
+            animation: arrowPulse 2s infinite;
+        }
+        
+        .hero-subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            line-height: 1.6;
+            color: var(--gray-400);
+            margin-bottom: 40px;
+            max-width: 500px;
+        }
+        
+        /* Email Form */
+        .email-form {
+            position: relative;
+            max-width: 480px;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+        
+        .form-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gray-400);
+            margin-bottom: 15px;
+            display: block;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 0;
+            background: white;
+            border: 2px solid var(--primary-black);
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+        }
+        
+        .input-group:hover {
+            transform: translateX(-2px) translateY(-2px);
+            box-shadow: 4px 4px 0 var(--primary-black);
+        }
+        
+        .email-input {
+            flex: 1;
+            padding: 18px 24px;
+            border: none;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 15px;
+            background: transparent;
+            outline: none;
+        }
+        
+        .email-input::placeholder {
+            color: var(--gray-400);
+        }
+        
+        .submit-btn {
+            padding: 18px 32px;
+            background: var(--primary-black);
+            color: var(--soft-white);
+            border: none;
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-red);
+            transition: left 0.3s var(--transition-smooth);
+        }
+        
+        .submit-btn:hover::before {
+            left: 0;
+        }
+        
+        .submit-btn span {
+            position: relative;
+            z-index: 1;
+        }
+        
+        /* Visual Element */
+        .hero-visual {
+            position: relative;
+            animation: fadeInRight 0.8s ease-out;
+        }
+        
+        .visual-container {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+        
+        .orbit-1 {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+        
+        .orbit-2 {
+            width: 80%;
+            height: 80%;
+            top: 10%;
+            left: 10%;
+            animation-duration: 30s;
+            animation-direction: reverse;
+        }
+        
+        .orbit-3 {
+            width: 60%;
+            height: 60%;
+            top: 20%;
+            left: 20%;
+            animation-duration: 15s;
+        }
+        
+        .orbit-dot {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: var(--accent-red);
+            border-radius: 50%;
+            top: -4px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .center-logo {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px; /* adjusted per request */
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border-radius: 20px;
+            box-shadow: none;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .center-logo img {
+            max-width: 80%;
+            max-height: 80%;
+            width: auto;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            filter: none;
+        }
+        
+        /* Features Section */
+        .features {
+            padding: 120px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 60px;
+            margin-top: 80px;
+        }
+        
+        .feature-card {
+            text-align: center;
+            padding: 40px;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .feature-card:nth-child(1) { animation-delay: 0.1s; }
+        .feature-card:nth-child(2) { animation-delay: 0.2s; }
+        .feature-card:nth-child(3) { animation-delay: 0.3s; }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
+        
+        .icon-shape {
+            width: 100%;
+            height: 100%;
+            border: 3px solid var(--primary-black);
+            position: relative;
+            transition: all 0.3s var(--transition-smooth);
+        }
+        
+        .feature-card:nth-child(1) .icon-shape { border-radius: 50%; }
+        .feature-card:nth-child(2) .icon-shape { transform: rotate(45deg); }
+        .feature-card:nth-child(3) .icon-shape { border-radius: 0; }
+        
+        .feature-card:hover .icon-shape {
+            background: var(--accent-red);
+            transform: scale(1.1) rotate(360deg);
+        }
+        
+        .feature-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            letter-spacing: -0.5px;
+        }
+        
+        .feature-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--gray-400);
+        }
+        
+        .section-title {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            font-weight: 600;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+        
+        /* Success Message */
+        .success-message {
+            position: absolute;
+            top: -60px;
+            left: 0;
+            right: 0;
+            background: var(--accent-red);
+            color: white;
+            padding: 15px 24px;
+            font-size: 14px;
+            transform: translateY(-100%);
+            opacity: 0;
+            transition: all 0.3s var(--transition-smooth);
+        }
+        
+        .success-message.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Animations */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+        
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes logoFade {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        @keyframes arrowPulse {
+            0%, 100% { transform: translateY(-50%) translateX(0); }
+            50% { transform: translateY(-50%) translateX(10px); }
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+            50% { transform: translate(-50%, -50%) translateY(-20px); }
+        }
+        
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 60px;
+                text-align: center;
+            }
+            
+            .hero-text {
+                order: 2;
+            }
+            
+            .hero-visual {
+                order: 1;
+            }
+            
+            .hero-subtitle {
+                margin: 0 auto 40px;
+            }
+            
+            .email-form {
+                margin: 0 auto;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .input-group {
+                flex-direction: column;
+            }
+            
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-content">
+            <a href="#" class="logo-container">
+                <img src="zeroshot_logo.png" alt="Zero Shot" class="logo-img">
+                <span class="logo-text">ZERO SHOT AI</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="#approach">APPROACH</a></li>
+                <li><a href="#services">SERVICES</a></li>
+                <li><a href="#contact">CONTACT</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        AI Solutions<br>
+                        at <span class="accent">Light Speed</span>
+                    </h1>
+                    <p class="hero-subtitle">
+                        Skip the complexity. Skip the overhead. Get production-ready AI solutions that work, 
+                        delivered faster than you thought possible.
+                    </p>
+                    
+                    <div class="email-form">
+                        <div class="success-message" id="successMessage">
+                            Welcome aboard! We'll be in touch soon.
+                        </div>
+                        <label class="form-label">Get Started → Zero Friction</label>
+                        <form id="emailForm" class="input-group">
+                            <input 
+                                type="email" 
+                                class="email-input" 
+                                placeholder="your@email.com"
+                                required
+                                id="emailInput"
+                            >
+                            <button type="submit" class="submit-btn">
+                                <span>LAUNCH</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="visual-container">
+                        <div class="orbit orbit-1">
+                            <div class="orbit-dot"></div>
+                        </div>
+                        <div class="orbit orbit-2">
+                            <div class="orbit-dot"></div>
+                        </div>
+                        <div class="orbit orbit-3">
+                            <div class="orbit-dot"></div>
+                        </div>
+                        <div class="center-logo">
+                            <img src="zeroshot_logo.png" alt="Zero Shot">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Features Section -->
+    <section class="features" id="approach">
+        <div class="container">
+            <h2 class="section-title">ZERO COMPLEXITY. MAXIMUM IMPACT.</h2>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="feature-title">Zero Shot Learning</h3>
+                    <p class="feature-desc">
+                        No months of training data. No endless iterations. 
+                        We deploy AI that learns and adapts from day one.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="feature-title">Rapid Deployment</h3>
+                    <p class="feature-desc">
+                        Weeks, not quarters. We cut through the noise and deliver 
+                        working solutions while others are still planning.
+                    </p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <div class="icon-shape"></div>
+                    </div>
+                    <h3 class="feature-title">Lean Architecture</h3>
+                    <p class="feature-desc">
+                        Simple systems that scale. No over-engineering. 
+                        Just clean, maintainable AI that grows with you.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Email form handling
+        document.getElementById('emailForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('emailInput').value;
+            const successMsg = document.getElementById('successMessage');
+            
+            // Show success message
+            successMsg.classList.add('show');
+            
+            // Reset form
+            document.getElementById('emailInput').value = '';
+            
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 3000);
+            
+            // Here you would typically send the email to your backend
+            console.log('Email captured:', email);
+        });
+        
+        // Smooth scroll for navigation links
+        document.querySelectorAll('.nav-links a').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const href = this.getAttribute('href');
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    const element = document.querySelector(href);
+                    if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+        
+        // Intersection Observer for feature cards animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.style.animationPlayState = 'paused';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
