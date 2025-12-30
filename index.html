@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zero Shot AI - AI at Light Speed</title>
+    <title>Zero Shot AI - Make your business AI-Native</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200;400;600&family=JetBrains+Mono:wght@300;500&display=swap');
         
@@ -200,85 +200,6 @@
             max-width: 500px;
         }
         
-        /* Email Form */
-        .email-form {
-            position: relative;
-            max-width: 480px;
-            animation: fadeInUp 1s ease-out 0.2s both;
-        }
-        
-        .form-label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            color: var(--gray-400);
-            margin-bottom: 15px;
-            display: block;
-        }
-        
-        .input-group {
-            display: flex;
-            gap: 0;
-            background: white;
-            border: 2px solid var(--primary-black);
-            transition: all 0.3s var(--transition-smooth);
-            position: relative;
-        }
-        
-        .input-group:hover {
-            transform: translateX(-2px) translateY(-2px);
-            box-shadow: 4px 4px 0 var(--primary-black);
-        }
-        
-        .email-input {
-            flex: 1;
-            padding: 18px 24px;
-            border: none;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 15px;
-            background: transparent;
-            outline: none;
-        }
-        
-        .email-input::placeholder {
-            color: var(--gray-400);
-        }
-        
-        .submit-btn {
-            padding: 18px 32px;
-            background: var(--primary-black);
-            color: var(--soft-white);
-            border: none;
-            font-family: 'Oswald', sans-serif;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: all 0.3s var(--transition-smooth);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: var(--accent-red);
-            transition: left 0.3s var(--transition-smooth);
-        }
-        
-        .submit-btn:hover::before {
-            left: 0;
-        }
-        
-        .submit-btn span {
-            position: relative;
-            z-index: 1;
-        }
         
         /* Visual Element */
         .hero-visual {
@@ -434,25 +355,14 @@
             text-align: center;
             letter-spacing: -1px;
         }
-        
-        /* Success Message */
-        .success-message {
-            position: absolute;
-            top: -60px;
-            left: 0;
-            right: 0;
-            background: var(--accent-red);
-            color: white;
-            padding: 15px 24px;
-            font-size: 14px;
-            transform: translateY(-100%);
-            opacity: 0;
-            transition: all 0.3s var(--transition-smooth);
-        }
-        
-        .success-message.show {
-            transform: translateY(0);
-            opacity: 1;
+
+        .section-intro {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-400);
+            text-align: center;
+            max-width: 800px;
+            margin: 30px auto 0;
         }
         
         /* Animations */
@@ -513,7 +423,370 @@
             0%, 100% { transform: translate(-50%, -50%) translateY(0); }
             50% { transform: translate(-50%, -50%) translateY(-20px); }
         }
-        
+
+        /* Approach Section - Steps */
+        .approach {
+            padding: 120px 0;
+            background: var(--soft-white);
+        }
+
+        .steps-container {
+            margin-top: 80px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .step-item {
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 30px;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .step-item:nth-child(1) { animation-delay: 0.1s; }
+        .step-item:nth-child(2) { animation-delay: 0.2s; }
+        .step-item:nth-child(3) { animation-delay: 0.3s; }
+        .step-item:nth-child(4) { animation-delay: 0.4s; }
+        .step-item:nth-child(5) { animation-delay: 0.5s; }
+        .step-item:nth-child(6) { animation-delay: 0.6s; }
+
+        .step-number {
+            font-family: 'Oswald', sans-serif;
+            font-size: 48px;
+            font-weight: 600;
+            color: var(--accent-red);
+            line-height: 1;
+        }
+
+        .step-content h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            letter-spacing: -0.5px;
+        }
+
+        .step-content p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: var(--gray-400);
+        }
+
+        /* Services Section */
+        .services {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px;
+            margin-top: 80px;
+        }
+
+        .service-card {
+            border: 2px solid var(--primary-black);
+            padding: 40px;
+            background: var(--soft-white);
+            transition: all 0.3s var(--transition-smooth);
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .service-card:nth-child(1) { animation-delay: 0.1s; }
+        .service-card:nth-child(2) { animation-delay: 0.2s; }
+        .service-card:nth-child(3) { animation-delay: 0.3s; }
+        .service-card:nth-child(4) { animation-delay: 0.4s; }
+
+        .service-card:hover {
+            transform: translateX(-4px) translateY(-4px);
+            box-shadow: 6px 6px 0 var(--primary-black);
+        }
+
+        .service-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+        }
+
+        .service-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-card li {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--gray-400);
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .service-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        /* Engagements Section */
+        .engagements {
+            padding: 120px 0;
+            background: var(--soft-white);
+        }
+
+        .engagements-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-top: 80px;
+        }
+
+        .engagement-card {
+            border: 2px solid var(--primary-black);
+            padding: 40px;
+            background: white;
+            transition: all 0.3s var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .engagement-card:nth-child(1) { animation-delay: 0.1s; }
+        .engagement-card:nth-child(2) { animation-delay: 0.2s; }
+        .engagement-card:nth-child(3) { animation-delay: 0.3s; }
+
+        .engagement-card:hover {
+            transform: translateX(-4px) translateY(-4px);
+            box-shadow: 6px 6px 0 var(--primary-black);
+        }
+
+        .engagement-card h3 {
+            font-family: 'Oswald', sans-serif;
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            letter-spacing: -0.5px;
+            line-height: 1.3;
+        }
+
+        .engagement-card h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 25px;
+            margin-bottom: 12px;
+            color: var(--primary-black);
+        }
+
+        .engagement-card ul {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+
+        .engagement-card li {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--gray-400);
+            padding-left: 18px;
+            position: relative;
+            margin-bottom: 8px;
+        }
+
+        .engagement-card li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .engagement-best-for {
+            margin-top: auto;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .engagement-best-for p {
+            font-size: 13px;
+            line-height: 1.6;
+            color: var(--gray-400);
+        }
+
+        /* What to Expect Section */
+        .what-to-expect {
+            padding: 120px 0;
+            background: white;
+        }
+
+        .expect-list {
+            max-width: 800px;
+            margin: 60px auto 0;
+            list-style: none;
+            padding: 0;
+        }
+
+        .expect-list li {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--gray-400);
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 15px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .expect-list li:nth-child(1) { animation-delay: 0.1s; }
+        .expect-list li:nth-child(2) { animation-delay: 0.2s; }
+        .expect-list li:nth-child(3) { animation-delay: 0.3s; }
+        .expect-list li:nth-child(4) { animation-delay: 0.4s; }
+        .expect-list li:nth-child(5) { animation-delay: 0.5s; }
+
+        .expect-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-red);
+            font-weight: bold;
+        }
+
+        .expect-note {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 14px;
+            color: var(--gray-400);
+            font-style: italic;
+        }
+
+        /* FAQ Section */
+        .faq {
+            padding: 120px 0;
+            background: var(--soft-white);
+        }
+
+        .faq-list {
+            max-width: 900px;
+            margin: 60px auto 0;
+        }
+
+        .faq-item {
+            margin-bottom: 40px;
+            opacity: 0;
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .faq-item:nth-child(1) { animation-delay: 0.1s; }
+        .faq-item:nth-child(2) { animation-delay: 0.2s; }
+        .faq-item:nth-child(3) { animation-delay: 0.3s; }
+        .faq-item:nth-child(4) { animation-delay: 0.4s; }
+        .faq-item:nth-child(5) { animation-delay: 0.5s; }
+
+        .faq-question {
+            font-family: 'Oswald', sans-serif;
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+
+        .faq-answer {
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--gray-400);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 120px 0;
+            background: white;
+            text-align: center;
+        }
+
+        .contact-text {
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--gray-400);
+            max-width: 600px;
+            margin: 30px auto 50px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        .btn-primary {
+            padding: 20px 40px;
+            background: var(--primary-black);
+            color: var(--soft-white);
+            border: 2px solid var(--primary-black);
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            text-decoration: none;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent-red);
+            transition: left 0.3s var(--transition-smooth);
+            z-index: 0;
+        }
+
+        .btn-primary:hover::before {
+            left: 0;
+        }
+
+        .btn-primary span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .contact-email {
+            font-size: 14px;
+            color: var(--gray-400);
+            margin-top: 20px;
+        }
+
+        .contact-email a {
+            color: var(--accent-red);
+            text-decoration: none;
+            transition: opacity 0.3s var(--transition-smooth);
+        }
+
+        .contact-email a:hover {
+            opacity: 0.7;
+        }
+
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .container {
@@ -537,25 +810,42 @@
             .hero-visual {
                 order: 1;
             }
-            
+
             .hero-subtitle {
                 margin: 0 auto 40px;
             }
-            
-            .email-form {
-                margin: 0 auto;
-            }
-            
+
             .features-grid {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-            
-            .input-group {
-                flex-direction: column;
+
+            .step-item {
+                grid-template-columns: 60px 1fr;
+                gap: 20px;
+                margin-bottom: 40px;
             }
-            
-            .submit-btn {
+
+            .step-number {
+                font-size: 36px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .engagements-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn-primary {
                 width: 100%;
             }
         }
@@ -572,6 +862,7 @@
             <ul class="nav-links">
                 <li><a href="#approach">APPROACH</a></li>
                 <li><a href="#services">SERVICES</a></li>
+                <li><a href="#engagements">ENGAGEMENTS</a></li>
                 <li><a href="#contact">CONTACT</a></li>
             </ul>
         </div>
@@ -583,32 +874,12 @@
             <div class="hero-content">
                 <div class="hero-text">
                     <h1 class="hero-title">
-                        AI Solutions<br>
-                        at <span class="accent">Light Speed</span>
+                        Make your business<br>
+                        <span class="accent">AI-Native</span>
                     </h1>
                     <p class="hero-subtitle">
-                        Skip the complexity. Skip the overhead. Get production-ready AI solutions that work, 
-                        delivered faster than you thought possible.
+                        We help you turn AI into a durable capability—across your product, your teams, and your operations—so you can ship faster, measure impact, and build defensible advantage with your data.
                     </p>
-                    
-                    <div class="email-form">
-                        <div class="success-message" id="successMessage">
-                            Welcome aboard! We'll be in touch soon.
-                        </div>
-                        <label class="form-label">Get Started → Zero Friction</label>
-                        <form id="emailForm" class="input-group">
-                            <input 
-                                type="email" 
-                                class="email-input" 
-                                placeholder="your@email.com"
-                                required
-                                id="emailInput"
-                            >
-                            <button type="submit" class="submit-btn">
-                                <span>LAUNCH</span>
-                            </button>
-                        </form>
-                    </div>
                 </div>
                 
                 <div class="hero-visual">
@@ -631,71 +902,289 @@
         </div>
     </section>
     
-    <!-- Features Section -->
-    <section class="features" id="approach">
+    <!-- What We Do Section -->
+    <section class="features" id="what-we-do">
         <div class="container">
-            <h2 class="section-title">ZERO COMPLEXITY. MAXIMUM IMPACT.</h2>
-            
+            <h2 class="section-title">MAKE EVERYTHING AI-NATIVE.</h2>
+            <p class="section-intro">
+                Most AI efforts stall because the foundations aren't in place: instrumentation, data hygiene, evaluation, and ownership. We help you build those foundations and create systems your team can sustain.
+            </p>
+
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">
                         <div class="icon-shape"></div>
                     </div>
-                    <h3 class="feature-title">Zero Shot Learning</h3>
+                    <h3 class="feature-title">AI-Native Product</h3>
                     <p class="feature-desc">
-                        No months of training data. No endless iterations. 
-                        We deploy AI that learns and adapts from day one.
+                        Define where AI creates real user value and how to translate business goals into a measurable AI roadmap. We help you turn your unique data and workflows into durable advantage.
                     </p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <div class="icon-shape"></div>
                     </div>
-                    <h3 class="feature-title">Rapid Deployment</h3>
+                    <h3 class="feature-title">AI-Native Development Team</h3>
                     <p class="feature-desc">
-                        Weeks, not quarters. We cut through the noise and deliver 
-                        working solutions while others are still planning.
+                        Upskill your engineers and product team through real applied work. We build the habits that make AI reliable in practice: data collection, metrics, evaluation, and iteration loops.
                     </p>
                 </div>
-                
+
                 <div class="feature-card">
                     <div class="feature-icon">
                         <div class="icon-shape"></div>
                     </div>
-                    <h3 class="feature-title">Lean Architecture</h3>
+                    <h3 class="feature-title">AI-Native Operations</h3>
                     <p class="feature-desc">
-                        Simple systems that scale. No over-engineering. 
-                        Just clean, maintainable AI that grows with you.
+                        We analyze your workflows and provide strategic guidance on which processes benefit most from AI infusion—and how to structure your operating model so you can harness rapid AI innovation without being overwhelmed by it.
                     </p>
                 </div>
             </div>
         </div>
     </section>
-    
+
+    <!-- Approach Section -->
+    <section class="approach" id="approach">
+        <div class="container">
+            <h2 class="section-title">A PRACTICAL PATH TO PRODUCTION.</h2>
+            <p class="section-intro">
+                We combine strategy with hands-on collaboration. Every engagement is designed to produce clear deliverables, measurable outcomes, and internal capability your team can sustain.
+            </p>
+
+            <div class="steps-container">
+                <div class="step-item">
+                    <div class="step-number">0)</div>
+                    <div class="step-content">
+                        <h3>Understand your goals</h3>
+                        <p>We align with your executive sponsor(s) on business outcomes, constraints, and what success looks like. This becomes the anchor for prioritization, metrics, and decision-making.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">1)</div>
+                    <div class="step-content">
+                        <h3>Requirements gathering</h3>
+                        <p>We clarify the use cases, users, workflows, risks, and integration points. You get a shared definition of scope, assumptions, and acceptance criteria.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">2)</div>
+                    <div class="step-content">
+                        <h3>Data analysis</h3>
+                        <p>We assess what data you have, what's missing, and what needs to be instrumented. We identify data quality gaps and define the minimum reliable dataset to measure progress.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">3)</div>
+                    <div class="step-content">
+                        <h3>Design</h3>
+                        <p>We create a detailed solution design: model strategy, evaluation approach, architecture, and quality gates—so implementation is predictable and measurable.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">4)</div>
+                    <div class="step-content">
+                        <h3>Build (implementation with our support)</h3>
+                        <p>We support your team during implementation with design reviews, unblockers, and technical guidance. We help you build it the right way, without committing to owning the full implementation.</p>
+                    </div>
+                </div>
+
+                <div class="step-item">
+                    <div class="step-number">5)</div>
+                    <div class="step-content">
+                        <h3>Enable</h3>
+                        <p>We transfer capability: playbooks, templates, code patterns, and training so the work continues without dependency.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2 class="section-title">SERVICES</h2>
+
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>AI Product Strategy</h3>
+                    <ul>
+                        <li>Opportunity mapping and prioritization (value vs. effort)</li>
+                        <li>AI roadmap tied to measurable metrics</li>
+                        <li>AI moat analysis: data, distribution, workflow lock-in</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>AI Upskilling</h3>
+                    <ul>
+                        <li>Workshops and working sessions using your real use cases</li>
+                        <li>Data collection and instrumentation best practices</li>
+                        <li>Data hygiene that improves AI outcomes (reducing noise, drift, and failure modes)</li>
+                        <li>Metrics creation, validation, and evaluation methods</li>
+                        <li>Production patterns: quality gates, iteration loops, and operational readiness</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>Fractional AI Executive Leadership</h3>
+                    <ul>
+                        <li>Executive-level decision support without a full-time hire</li>
+                        <li>Org design and operating model for AI initiatives</li>
+                        <li>Governance, safety, and quality standards</li>
+                        <li>Moat strategy: understanding AI's impact on your differentiation and how to widen/deepen your moat to prevent AI cannibalisation</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <h3>AI Solution Development</h3>
+                    <ul>
+                        <li>Detailed solution design (architecture + interfaces + evaluation plan)</li>
+                        <li>Implementation guidance and review support (during build phases)</li>
+                        <li>Documentation and handoff so your team can maintain and extend</li>
+                        <li>Measurement playbook: suggested metrics, review intervals, and improvement loops your team can run</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Engagements Section -->
+    <section class="engagements" id="engagements">
+        <div class="container">
+            <h2 class="section-title">ENGAGEMENTS</h2>
+            <p class="section-intro">
+                Choose a validation-focused sprint to sharpen direction, or a deeper engagement to design and support the build of a production-grade pilot. We'll recommend the best fit after a short readiness call.
+            </p>
+
+            <div class="engagements-grid">
+                <div class="engagement-card">
+                    <h3>AI Readiness & Validation Sprint (6 weeks)</h3>
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Executive Sponsor Goals alignment (typically 1–2 ESGs)</li>
+                        <li>Current-state assessment across data, systems, and workflows</li>
+                        <li>Refined use case definition and requirements</li>
+                        <li>Prioritized AI backlog with expected impact and dependencies</li>
+                        <li>Data + instrumentation plan (what to collect and why)</li>
+                        <li>Evaluation and metrics plan (how you'll measure success)</li>
+                        <li>Executive readout + recommended next steps</li>
+                    </ul>
+                    <div class="engagement-best-for">
+                        <h4>Best for</h4>
+                        <p>Teams that have a partially baked idea and need validation from experts—or new suggestions. This typically involves 1–2 ESGs.</p>
+                    </div>
+                </div>
+
+                <div class="engagement-card">
+                    <h3>Pilot Design & Build Support (3 months)</h3>
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Executive Sponsor Goals alignment (typically 2–3 ESGs)</li>
+                        <li>Detailed solution design + model strategy (LLM/ML/hybrid)</li>
+                        <li>Evaluation harness design, quality gates, and acceptance criteria</li>
+                        <li>Implementation support via reviews, unblockers, and technical guidance</li>
+                        <li>Training + documentation for internal ownership</li>
+                        <li>Measurement playbook: metrics, review intervals, and improvement loops</li>
+                    </ul>
+                    <div class="engagement-best-for">
+                        <h4>Best for</h4>
+                        <p>Teams that want to move from concept to a production-grade pilot plan with sustained expert guidance, typically spanning 2–3 ESGs.</p>
+                    </div>
+                </div>
+
+                <div class="engagement-card">
+                    <h3>Fractional Head of AI (monthly)</h3>
+                    <h4>What you get</h4>
+                    <ul>
+                        <li>Ongoing leadership across strategy and delivery</li>
+                        <li>Review of critical decisions: model choices, architecture, risk</li>
+                        <li>Unblocking teams and ensuring outcome-driven execution</li>
+                        <li>Governance and operating cadence for AI work</li>
+                        <li>Moat strategy to protect and extend differentiation as AI becomes commoditized</li>
+                    </ul>
+                    <div class="engagement-best-for">
+                        <h4>Best for</h4>
+                        <p>Leadership teams that want consistent traction and accountability.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What to Expect Section -->
+    <section class="what-to-expect">
+        <div class="container">
+            <h2 class="section-title">WHAT YOU CAN EXPECT</h2>
+            <ul class="expect-list">
+                <li>A roadmap that ties AI work to business outcomes and metrics</li>
+                <li>Faster cycle time from idea → pilot plan → production readiness</li>
+                <li>Clean foundations: instrumentation, data hygiene, evaluation, quality gates</li>
+                <li>Better decisions on model strategy (LLM vs. ML vs. hybrid)</li>
+                <li>Internal capability that stays with your team</li>
+            </ul>
+            <p class="expect-note">
+                If you already have an AI initiative underway, we can diagnose what's blocking it and help you course-correct.
+            </p>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">FAQ</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3 class="faq-question">Do we need perfect data to start?</h3>
+                    <p class="faq-answer">No. We start by instrumenting the right signals and defining metrics. Many teams unlock value quickly with targeted data improvements rather than "boil the ocean" data projects.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Do you build, or only advise?</h3>
+                    <p class="faq-answer">Both. We provide strategy and work hands-on with your team through design and build support, while your team owns implementation.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">How do you decide between LLMs, classical ML, or hybrid approaches?</h3>
+                    <p class="faq-answer">We choose based on measurable requirements: latency, cost, accuracy, safety, interpretability, and the data you already have (or can realistically collect).</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">How long until we see results?</h3>
+                    <p class="faq-answer">The Readiness & Validation Sprint produces clarity and a plan in six weeks. A deeper engagement over three months can produce a production-grade pilot design and support your team through build phases.</p>
+                </div>
+
+                <div class="faq-item">
+                    <h3 class="faq-question">Will our team be able to maintain what we build?</h3>
+                    <p class="faq-answer">We prioritize maintainable design, documentation, and knowledge transfer. The goal is to build the process and internal capability that enables your team to maintain and extend the system without dependency.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2 class="section-title">LET'S MAKE YOUR PRODUCT AI-NATIVE.</h2>
+            <p class="contact-text">
+                Tell us what you're trying to build, what data you have, and where you're getting stuck. We'll suggest the fastest path to measurable results.
+            </p>
+            <div class="cta-buttons">
+                <a href="#" class="btn-primary">
+                    <span>Book a 30-minute AI Readiness Call</span>
+                </a>
+            </div>
+            <p class="contact-email">
+                Or email: <a href="mailto:hello@zeroshotai.io">hello@zeroshotai.io</a>
+            </p>
+        </div>
+    </section>
+
     <script>
-        // Email form handling
-        document.getElementById('emailForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('emailInput').value;
-            const successMsg = document.getElementById('successMessage');
-            
-            // Show success message
-            successMsg.classList.add('show');
-            
-            // Reset form
-            document.getElementById('emailInput').value = '';
-            
-            // Hide message after 3 seconds
-            setTimeout(() => {
-                successMsg.classList.remove('show');
-            }, 3000);
-            
-            // Here you would typically send the email to your backend
-            console.log('Email captured:', email);
-        });
-        
         // Smooth scroll for navigation links
         document.querySelectorAll('.nav-links a').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -709,13 +1198,13 @@
                 }
             });
         });
-        
-        // Intersection Observer for feature cards animation on scroll
+
+        // Intersection Observer for animated elements on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -100px 0px'
         };
-        
+
         const observer = new IntersectionObserver(function(entries) {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
@@ -723,10 +1212,22 @@
                 }
             });
         }, observerOptions);
-        
-        document.querySelectorAll('.feature-card').forEach(card => {
-            card.style.animationPlayState = 'paused';
-            observer.observe(card);
+
+        // Observe all animated elements
+        const animatedElements = [
+            '.feature-card',
+            '.step-item',
+            '.service-card',
+            '.engagement-card',
+            '.expect-list li',
+            '.faq-item'
+        ];
+
+        animatedElements.forEach(selector => {
+            document.querySelectorAll(selector).forEach(element => {
+                element.style.animationPlayState = 'paused';
+                observer.observe(element);
+            });
         });
     </script>
 </body>
