@@ -771,6 +771,105 @@
             z-index: 1;
         }
 
+        .contact-divider {
+            font-size: 16px;
+            color: var(--gray-400);
+            margin: 50px 0 40px;
+            font-weight: 500;
+        }
+
+        .contact-form {
+            max-width: 500px;
+            margin: 0 auto 40px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 15px 20px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            background: var(--soft-white);
+            border: 2px solid var(--dark-bg);
+            color: var(--dark-bg);
+            transition: all 0.3s var(--transition-smooth);
+            box-sizing: border-box;
+        }
+
+        .form-input::placeholder,
+        .form-textarea::placeholder {
+            color: var(--gray-400);
+            opacity: 0.8;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--accent-red);
+            background: white;
+        }
+
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-secondary {
+            width: 100%;
+            padding: 18px 40px;
+            background: var(--dark-bg);
+            color: white;
+            border: 2px solid var(--dark-bg);
+            font-family: 'Oswald', sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-secondary:hover {
+            background: transparent;
+            color: var(--dark-bg);
+        }
+
+        .btn-secondary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .form-message {
+            margin-top: 20px;
+            padding: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            text-align: center;
+            border-radius: 0;
+            display: none;
+        }
+
+        .form-message.success {
+            display: block;
+            background: #d4edda;
+            color: #155724;
+            border: 2px solid #28a745;
+        }
+
+        .form-message.error {
+            display: block;
+            background: #f8d7da;
+            color: #721c24;
+            border: 2px solid #dc3545;
+        }
+
         .contact-email {
             font-size: 14px;
             color: var(--gray-400);
@@ -1178,8 +1277,43 @@
                     <span>Book a 30-minute AI Readiness Call</span>
                 </a>
             </div>
+
+            <p class="contact-divider">Or get in touch:</p>
+
+            <form id="contact-form" class="contact-form">
+                <input type="hidden" name="access_key" value="c48e24c2-c1d5-46c5-bba6-199a79c05ff6">
+                <input type="hidden" name="subject" value="New Contact from ZeroShot AI Website">
+                <input type="hidden" name="from_name" value="ZeroShot AI Contact Form">
+
+                <div class="form-group">
+                    <input
+                        type="email"
+                        name="email"
+                        class="form-input"
+                        placeholder="YOUR EMAIL"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <textarea
+                        name="message"
+                        class="form-textarea"
+                        placeholder="TELL US ABOUT YOUR PROJECT"
+                        rows="5"
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit" class="btn-secondary">
+                    <span>Send Message</span>
+                </button>
+
+                <div id="form-message" class="form-message"></div>
+            </form>
+
             <p class="contact-email">
-                Or email: <a href="mailto:hello@zeroshotai.io">hello@zeroshotai.io</a>
+                Or email directly: <a href="mailto:hello@zeroshotai.io">hello@zeroshotai.io</a>
             </p>
         </div>
     </section>
@@ -1228,6 +1362,54 @@
                 element.style.animationPlayState = 'paused';
                 observer.observe(element);
             });
+        });
+
+        // Contact form submission
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const buttonText = submitButton.querySelector('span');
+            const originalText = buttonText.textContent;
+
+            // Disable button and show loading state
+            submitButton.disabled = true;
+            buttonText.textContent = 'SENDING...';
+
+            // Clear previous messages
+            formMessage.className = 'form-message';
+            formMessage.textContent = '';
+
+            // Get form data
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    formMessage.className = 'form-message success';
+                    formMessage.textContent = 'Thank you! We\'ll get back to you soon.';
+                    contactForm.reset();
+                } else {
+                    throw new Error(data.message || 'Something went wrong');
+                }
+            } catch (error) {
+                formMessage.className = 'form-message error';
+                formMessage.textContent = 'Oops! Something went wrong. Please try emailing us directly.';
+                console.error('Form submission error:', error);
+            } finally {
+                // Re-enable button
+                submitButton.disabled = false;
+                buttonText.textContent = originalText;
+            }
         });
     </script>
 </body>
